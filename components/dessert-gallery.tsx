@@ -13,31 +13,31 @@ const desserts = [
   },
   {
     id: 2,
-    name: "Fresh Berry Tart",
-    description: "Buttery pastry crust filled with vanilla custard and topped with seasonal berries.",
+    name: "Red Velvet Cupcakes",
+    description: "Moist red velvet cupcakes topped with cream cheese frosting and sprinkles.",
     image: "/images/berry-tart.jpg",
-    category: "Tarts",
+    category: "Cupcakes",
   },
   {
     id: 3,
-    name: "Tiramisu",
-    description: "Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cream.",
+    name: "Chocolate Chip Cookies",
+    description: "Classic homemade cookies with melty chocolate chips and a soft, chewy center.",
     image: "/images/tiramisu.jpg",
-    category: "Italian",
+    category: "Cookies",
   },
   {
     id: 4,
-    name: "Macarons",
-    description: "Delicate French almond meringue cookies in assorted flavors and colors.",
+    name: "Mosaic Gelatina",
+    description: "Beautiful colorful gelatin dessert with a creamy milk base and fruity cubes.",
     image: "/images/macarons.jpg",
-    category: "Pastries",
+    category: "Gelatinas",
   },
   {
     id: 5,
-    name: "Crème Brûlée",
-    description: "Silky vanilla custard with a perfectly caramelized sugar crust.",
+    name: "Almond Flour Brownies",
+    description: "Fudgy chocolate brownies made with almond flour, perfect for gluten-sensitive guests.",
     image: "/images/creme-brulee.jpg",
-    category: "French",
+    category: "Gluten Free",
   },
   {
     id: 6,
@@ -48,7 +48,7 @@ const desserts = [
   },
 ]
 
-const categories = ["All", ...Array.from(new Set(desserts.map((d) => d.category)))]
+const categories = ["All", "Cakes", "Cupcakes", "Cookies", "Gelatinas", "Gluten Free"]
 
 export function DessertGallery() {
   const [activeCategory, setActiveCategory] = useState("All")
