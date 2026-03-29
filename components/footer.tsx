@@ -8,7 +8,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <Link href="/" className="font-serif text-2xl font-bold">
-              Sweet Creations
+              Cathy&apos;s Sweet Creations
             </Link>
             <p className="mt-2 text-card/70 text-sm">
               Handcrafted desserts made with love
@@ -34,7 +34,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-card/20 text-center text-card/50 text-sm">
-          <p>&copy; {new Date().getFullYear()} Sweet Creations. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Cathy&apos;s Sweet Creations. All rights reserved.</p>
         </div>
       </div>
     </footer>
