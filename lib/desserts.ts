@@ -1,0 +1,103 @@
+export interface Dessert {
+  id: string
+  name: string
+  description: string
+  longDescription: string
+  image: string
+  category: string
+  price: string
+  priceNote?: string
+  allergens: string[]
+  ingredients: string[]
+  servingSize?: string
+}
+
+export const desserts: Dessert[] = [
+  {
+    id: "chocolate-lava-cake",
+    name: "Chocolate Lava Cake",
+    description: "Rich, decadent chocolate cake with a molten center that flows when you cut into it.",
+    longDescription: "Indulge in our signature Chocolate Lava Cake, a heavenly dessert that combines a perfectly baked chocolate exterior with a warm, gooey molten center. Each cake is individually portioned and baked to perfection, ensuring that satisfying moment when you break through the crust to reveal the flowing chocolate within. Served warm and dusted with powdered sugar, this is the ultimate treat for chocolate lovers.",
+    image: "/images/chocolate-lava-cake.jpg",
+    category: "Cakes",
+    price: "$8.00",
+    priceNote: "per individual cake",
+    allergens: ["Dairy", "Eggs", "Wheat/Gluten"],
+    ingredients: ["Dark chocolate", "Butter", "Eggs", "Sugar", "All-purpose flour", "Vanilla extract", "Powdered sugar"],
+    servingSize: "1 person",
+  },
+  {
+    id: "red-velvet-cupcakes",
+    name: "Red Velvet Cupcakes",
+    description: "Moist red velvet cupcakes topped with cream cheese frosting and sprinkles.",
+    longDescription: "Our Red Velvet Cupcakes are a beloved classic, featuring a moist and tender crumb with that signature hint of cocoa. Each cupcake is generously topped with our homemade cream cheese frosting, creating the perfect balance of tangy and sweet. Whether for a birthday party, holiday gathering, or just because, these beautiful cupcakes are sure to impress.",
+    image: "/images/berry-tart.jpg",
+    category: "Cupcakes",
+    price: "$36.00",
+    priceNote: "per dozen",
+    allergens: ["Dairy", "Eggs", "Wheat/Gluten"],
+    ingredients: ["All-purpose flour", "Cocoa powder", "Buttermilk", "Eggs", "Butter", "Sugar", "Red food coloring", "Cream cheese", "Vanilla extract"],
+    servingSize: "12 cupcakes",
+  },
+  {
+    id: "chocolate-chip-cookies",
+    name: "Chocolate Chip Cookies",
+    description: "Classic homemade cookies with melty chocolate chips and a soft, chewy center.",
+    longDescription: "Nothing beats a freshly baked chocolate chip cookie, and ours are made with love using a cherished family recipe. These cookies feature a perfectly crispy edge with a soft, chewy center, loaded with premium semi-sweet chocolate chips. Baked in small batches to ensure freshness, they arrive ready to enjoy or can be warmed slightly for that just-out-of-the-oven experience.",
+    image: "/images/tiramisu.jpg",
+    category: "Cookies",
+    price: "$18.00",
+    priceNote: "per dozen",
+    allergens: ["Dairy", "Eggs", "Wheat/Gluten", "Soy"],
+    ingredients: ["All-purpose flour", "Butter", "Brown sugar", "White sugar", "Eggs", "Vanilla extract", "Baking soda", "Salt", "Semi-sweet chocolate chips"],
+    servingSize: "12 cookies",
+  },
+  {
+    id: "mosaic-gelatina",
+    name: "Mosaic Gelatina",
+    description: "Beautiful colorful gelatin dessert with a creamy milk base and fruity cubes.",
+    longDescription: "Our stunning Mosaic Gelatina is as beautiful as it is delicious. This traditional Mexican dessert features vibrant cubes of fruit-flavored gelatin suspended in a creamy, sweet milk gelatin base. Each slice reveals a gorgeous mosaic pattern that makes it a showstopper at any celebration. Light, refreshing, and perfect for warm days or festive occasions.",
+    image: "/images/macarons.jpg",
+    category: "Gelatinas",
+    price: "$25.00",
+    priceNote: "serves 10-12",
+    allergens: ["Dairy"],
+    ingredients: ["Unflavored gelatin", "Sweetened condensed milk", "Evaporated milk", "Fruit-flavored gelatin (strawberry, lime, orange)", "Water", "Sugar"],
+    servingSize: "10-12 people",
+  },
+  {
+    id: "almond-flour-brownies",
+    name: "Almond Flour Brownies",
+    description: "Fudgy chocolate brownies made with almond flour, perfect for gluten-sensitive guests.",
+    longDescription: "Our Almond Flour Brownies prove that gluten-free can be absolutely delicious. These rich, fudgy brownies are made with premium almond flour and high-quality cocoa, resulting in a dense, chocolatey treat that everyone can enjoy. With a crackly top and gooey center, they satisfy even the most intense chocolate cravings while being naturally gluten-free.",
+    image: "/images/creme-brulee.jpg",
+    category: "Gluten Free",
+    price: "$24.00",
+    priceNote: "per dozen",
+    allergens: ["Tree Nuts (Almonds)", "Eggs", "Dairy"],
+    ingredients: ["Almond flour", "Cocoa powder", "Eggs", "Butter", "Sugar", "Vanilla extract", "Salt", "Chocolate chips"],
+    servingSize: "12 brownies",
+  },
+  {
+    id: "new-york-cheesecake",
+    name: "New York Cheesecake",
+    description: "Creamy New York-style cheesecake with a buttery graham cracker crust.",
+    longDescription: "Our New York-style Cheesecake is the epitome of creamy indulgence. Made with rich cream cheese and a touch of sour cream for that authentic tang, this cheesecake sits atop a buttery graham cracker crust. Slow-baked to achieve that perfectly dense and velvety texture, it can be served plain or topped with fresh berries or your favorite fruit compote.",
+    image: "/images/cheesecake.jpg",
+    category: "Cakes",
+    price: "$45.00",
+    priceNote: "whole cake, serves 8-10",
+    allergens: ["Dairy", "Eggs", "Wheat/Gluten"],
+    ingredients: ["Cream cheese", "Sour cream", "Eggs", "Sugar", "Vanilla extract", "Graham crackers", "Butter", "All-purpose flour"],
+    servingSize: "8-10 people",
+  },
+]
+
+export function getDessertById(id: string): Dessert | undefined {
+  return desserts.find((d) => d.id === id)
+}
+
+export function getDessertsByCategory(category: string): Dessert[] {
+  if (category === "All") return desserts
+  return desserts.filter((d) => d.category === category)
+}
