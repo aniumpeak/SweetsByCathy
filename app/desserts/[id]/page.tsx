@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, AlertTriangle } from "lucide-react"
 import { getDessertById, desserts } from "@/lib/desserts"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import ImageGallery from "@/components/image-gallery"
 
 export async function generateStaticParams() {
   return desserts.map((dessert) => ({
@@ -53,16 +53,11 @@ export default async function DessertPage({ params }: { params: Promise<{ id: st
       {/* Hero Section */}
       <div className="container mx-auto px-4 pb-16">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Image */}
-          <div className="relative aspect-square rounded-2xl overflow-hidden shadow-lg">
-            <Image
-              src={dessert.image}
-              alt={dessert.name}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
+          {/* Image Gallery */}
+          <ImageGallery
+            images={dessert.images && dessert.images.length > 0 ? dessert.images : [dessert.image]}
+            name={dessert.name}
+          />
 
           {/* Details */}
           <div className="flex flex-col gap-6">

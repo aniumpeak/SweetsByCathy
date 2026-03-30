@@ -4,6 +4,7 @@ export interface Dessert {
   description: string
   longDescription: string
   image: string
+  images?: string[]
   category: string
   price: string
   priceNote?: string
