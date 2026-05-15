@@ -1,16 +1,14 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, AlertTriangle } from "lucide-react"
-import { getDessertById, desserts } from "@/lib/desserts"
+import { getDessertById, getDesserts } from "@/lib/desserts"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import ImageGallery from "@/components/image-gallery"
 
 export async function generateStaticParams() {
-  return desserts.map((dessert) => ({
-    id: dessert.id,
-  }))
+  return getDesserts().map((dessert) => ({ id: dessert.id }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {

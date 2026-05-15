@@ -2,11 +2,11 @@
 
 import { useState } from "react"
 import { DessertCard } from "./dessert-card"
-import { desserts } from "@/lib/desserts"
+import type { Dessert } from "@/lib/desserts"
 
 const categories = ["All", "Cakes", "Cupcakes", "Cookies", "Gelatinas", "Gluten Free"]
 
-export function DessertGallery() {
+export function DessertGallery({ desserts }: { desserts: Dessert[] }) {
   const [activeCategory, setActiveCategory] = useState("All")
 
   const filteredDesserts =
