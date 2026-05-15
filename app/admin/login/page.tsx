@@ -17,18 +17,30 @@ export default function AdminLoginPage() {
     setLoading(true)
     setError("")
 
-    const res = await fetch("/api/admin/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
-    })
+    try {
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+        credentials: "include", // Important: include cookies in the request
+      })
 
-    if (res.ok) {
-      router.push("/admin")
-    } else {
-      setError("Incorrect password. Please try again.")
+      console.log("[v0] Login response status:", res.status)
+
+      if (res.ok) {
+        console.log("[v0] Login successful, redirecting to /admin")
+        router.push("/admin")
+      } else {
+        const data = await res.json()
+        console.log("[v0] Login failed:", data)
+        setError(data.error || "Incorrect password. Please try again.")
+      }
+    } catch (err) {
+      console.error("[v0] Login error:", err)
+      setError("An error occurred. Please try again.")
+    } finally {
+      setLoading(false)
     }
-    setLoading(false)
   }
 
   return (
