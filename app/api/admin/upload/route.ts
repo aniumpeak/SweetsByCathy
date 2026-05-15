@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
 import { writeFile, mkdir } from "fs/promises"
 import { join } from "path"
-import { verifyAuth } from "@/lib/auth"
+import { isAuthenticatedFromHeader } from "@/lib/auth"
 
 export async function POST(request: NextRequest) {
-  // Verify admin session
-  const token = request.cookies.get("admin_session")?.value
-  if (!token || !(await verifyAuth(token))) {
+  // Verify admin session via Authorization header
+  if (!(await isAuthenticatedFromHeader(request.headers.get("Authorization")))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 

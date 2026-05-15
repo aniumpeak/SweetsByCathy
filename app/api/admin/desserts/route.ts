@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from "next/server"
-import { isAuthenticated } from "@/lib/auth"
+import { isAuthenticatedFromHeader } from "@/lib/auth"
 import { getDesserts, saveDesserts, slugify, type Dessert } from "@/lib/desserts"
 
-export async function GET() {
-  if (!(await isAuthenticated())) {
+export async function GET(req: NextRequest) {
+  if (!(await isAuthenticatedFromHeader(req.headers.get("Authorization")))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
   return NextResponse.json(getDesserts())
 }
 
 export async function POST(req: NextRequest) {
-  if (!(await isAuthenticated())) {
+  if (!(await isAuthenticatedFromHeader(req.headers.get("Authorization")))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 

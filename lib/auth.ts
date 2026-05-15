@@ -1,7 +1,5 @@
 import { SignJWT, jwtVerify } from "jose"
-import { cookies } from "next/headers"
 
-const SESSION_COOKIE = "admin_session"
 const secret = new TextEncoder().encode(
   process.env.ADMIN_JWT_SECRET || "fallback-secret-change-me"
 )
@@ -24,11 +22,13 @@ export async function verifySession(token: string): Promise<boolean> {
   }
 }
 
-export async function isAuthenticated(): Promise<boolean> {
-  const cookieStore = await cookies()
-  const token = cookieStore.get(SESSION_COOKIE)?.value
+export async function getTokenFromHeader(authHeader: string | null): Promise<string | null> {
+  if (!authHeader?.startsWith("Bearer ")) return null
+  return authHeader.slice(7)
+}
+
+export async function isAuthenticatedFromHeader(authHeader: string | null): Promise<boolean> {
+  const token = await getTokenFromHeader(authHeader)
   if (!token) return false
   return verifySession(token)
 }
-
-export { SESSION_COOKIE }

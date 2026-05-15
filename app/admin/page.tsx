@@ -28,30 +28,38 @@ export default function AdminPage() {
   const [deleteTarget, setDeleteTarget] = useState<Dessert | null>(null)
   const [loading, setLoading] = useState(true)
 
+  const getAuthHeaders = useCallback(() => {
+    const token = localStorage.getItem("admin_token")
+    return token ? { Authorization: `Bearer ${token}` } : {}
+  }, [])
+
   const fetchDesserts = useCallback(async () => {
-    const res = await fetch("/api/admin/desserts")
+    const res = await fetch("/api/admin/desserts", {
+      headers: getAuthHeaders(),
+    })
     if (res.status === 401) {
+      localStorage.removeItem("admin_token")
       router.push("/admin/login")
       return
     }
     const data = await res.json()
     setDesserts(data)
     setLoading(false)
-  }, [router])
+  }, [router, getAuthHeaders])
 
   useEffect(() => {
     fetchDesserts()
   }, [fetchDesserts])
 
   async function handleLogout() {
-    await fetch("/api/admin/logout", { method: "POST" })
+    localStorage.removeItem("admin_token")
     router.push("/admin/login")
   }
 
   async function handleAdd(data: Partial<Dessert>) {
     await fetch("/api/admin/desserts", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...getAuthHeaders() },
       body: JSON.stringify(data),
     })
     await fetchDesserts()
@@ -62,7 +70,7 @@ export default function AdminPage() {
     if (!editing) return
     await fetch(`/api/admin/desserts/${editing.id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...getAuthHeaders() },
       body: JSON.stringify(data),
     })
     await fetchDesserts()
@@ -72,7 +80,10 @@ export default function AdminPage() {
 
   async function handleDelete() {
     if (!deleteTarget) return
-    await fetch(`/api/admin/desserts/${deleteTarget.id}`, { method: "DELETE" })
+    await fetch(`/api/admin/desserts/${deleteTarget.id}`, { 
+      method: "DELETE",
+      headers: getAuthHeaders(),
+    })
     await fetchDesserts()
     setDeleteTarget(null)
   }

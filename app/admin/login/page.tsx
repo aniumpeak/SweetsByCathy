@@ -20,22 +20,17 @@ export default function AdminLoginPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
-        credentials: "include", // Important: include cookies in the request
       })
 
-      console.log("[v0] Login response status:", res.status)
-
       if (res.ok) {
-        console.log("[v0] Login successful, redirecting to /admin")
-        // Use window.location for full page reload to ensure cookies are included
+        const { token } = await res.json()
+        localStorage.setItem("admin_token", token)
         window.location.href = "/admin"
       } else {
         const data = await res.json()
-        console.log("[v0] Login failed:", data)
         setError(data.error || "Incorrect password. Please try again.")
       }
-    } catch (err) {
-      console.error("[v0] Login error:", err)
+    } catch {
       setError("An error occurred. Please try again.")
     } finally {
       setLoading(false)

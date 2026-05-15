@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
-import { isAuthenticated } from "@/lib/auth"
+import { isAuthenticatedFromHeader } from "@/lib/auth"
 import { getDesserts, saveDesserts } from "@/lib/desserts"
 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  if (!(await isAuthenticated())) {
+  if (!(await isAuthenticatedFromHeader(req.headers.get("Authorization")))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
@@ -21,8 +21,8 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   return NextResponse.json(desserts[index])
 }
 
-export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  if (!(await isAuthenticated())) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  if (!(await isAuthenticatedFromHeader(req.headers.get("Authorization")))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 

@@ -72,8 +72,10 @@ export default function DessertForm({ initial, onSave, onCancel }: DessertFormPr
       const formData = new FormData()
       formData.append("file", file)
 
+      const token = localStorage.getItem("admin_token")
       const res = await fetch("/api/admin/upload", {
         method: "POST",
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
         body: formData,
       })
 
