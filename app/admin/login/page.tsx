@@ -1,13 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
 export default function AdminLoginPage() {
-  const router = useRouter()
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
@@ -29,7 +27,8 @@ export default function AdminLoginPage() {
 
       if (res.ok) {
         console.log("[v0] Login successful, redirecting to /admin")
-        router.push("/admin")
+        // Use window.location for full page reload to ensure cookies are included
+        window.location.href = "/admin"
       } else {
         const data = await res.json()
         console.log("[v0] Login failed:", data)
