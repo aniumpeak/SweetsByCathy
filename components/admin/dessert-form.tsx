@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { X, Plus } from "lucide-react"
+import { X, Plus, Upload } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -35,6 +35,7 @@ export default function DessertForm({ initial, onSave, onCancel }: DessertFormPr
   const [newIngredient, setNewIngredient] = useState("")
   const [newImage, setNewImage] = useState("")
   const [saving, setSaving] = useState(false)
+  const [uploading, setUploading] = useState(false)
 
   function set(field: string, value: unknown) {
     setForm((f) => ({ ...f, [field]: value }))
@@ -60,6 +61,33 @@ export default function DessertForm({ initial, onSave, onCancel }: DessertFormPr
 
   function removeImage(index: number) {
     set("images", form.images.filter((_: string, i: number) => i !== index))
+  }
+
+  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.currentTarget.files?.[0]
+    if (!file) return
+
+    setUploading(true)
+    try {
+      const formData = new FormData()
+      formData.append("file", file)
+
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: formData,
+      })
+
+      if (!res.ok) throw new Error("Upload failed")
+
+      const { path } = await res.json()
+      set("images", [...form.images, path])
+    } catch (error) {
+      console.error("Upload error:", error)
+      alert("Failed to upload image")
+    } finally {
+      setUploading(false)
+      e.currentTarget.value = ""
+    }
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -128,9 +156,32 @@ export default function DessertForm({ initial, onSave, onCancel }: DessertFormPr
       {/* Additional images */}
       <div className="space-y-1.5">
         <Label>Additional Images</Label>
-        <div className="flex gap-2">
-          <Input value={newImage} onChange={(e) => setNewImage(e.target.value)} placeholder="/images/another-angle.jpg" onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addImage() }}} />
-          <Button type="button" variant="outline" size="icon" onClick={addImage}><Plus className="w-4 h-4" /></Button>
+        <div className="flex flex-col gap-2">
+          {/* Upload button */}
+          <label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              disabled={uploading}
+              className="hidden"
+            />
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full cursor-pointer"
+              onClick={(e) => { e.currentTarget.parentElement?.querySelector("input")?.click() }}
+              disabled={uploading}
+            >
+              <Upload className="w-4 h-4 mr-1" />
+              {uploading ? "Uploading..." : "Upload Image"}
+            </Button>
+          </label>
+          {/* Or manual path entry */}
+          <div className="flex gap-2">
+            <Input value={newImage} onChange={(e) => setNewImage(e.target.value)} placeholder="/images/another-angle.jpg" onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addImage() }}} />
+            <Button type="button" variant="outline" size="icon" onClick={addImage}><Plus className="w-4 h-4" /></Button>
+          </div>
         </div>
         {form.images.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-2">
