@@ -4,7 +4,7 @@ import { useState } from "react"
 import { DessertCard } from "./dessert-card"
 import type { Dessert } from "@/lib/desserts"
 
-const categories = ["All", "Cakes", "Cupcakes", "Choco Flan", "Gelatinas", "Cookies", "Gluten Free"]
+const categories = ["All", "Cakes", "Cupcakes", "Choco Flan", "Flanes", "Gelatinas", "Cookies", "Gluten Free"]
 
 export function DessertGallery({ desserts }: { desserts: Dessert[] }) {
   const [activeCategory, setActiveCategory] = useState("All")

@@ -138,5 +138,19 @@
     "allergens": ["Dairy"],
     "ingredients": ["Blackberry gelatin", "Sweetened condensed milk", "Evaporated milk", "Heavy cream", "Chantilly cream", "Blue sugar pearls", "Custom themed toppers"],
     "servingSize": "12 gelatinas"
+  },
+  {
+    "id": "flan-de-fresa",
+    "name": "Flan de Fresa with Chantilly Cream and Fresh Fruit",
+    "description": "Individual strawberry cake topped with silky vanilla flan, finished with chantilly cream and fresh berries or custom toppers.",
+    "longDescription": "A personal-sized two-layer dessert featuring a soft, moist strawberry cake base topped with a silky vanilla flan and a touch of caramel. Each one is finished with a swirl of chantilly cream and crowned with fresh strawberries, blueberries, and blackberries, or customized with themed toppers for special occasions. The combination of fluffy strawberry cake and creamy flan creates a soft, balanced bite that feels both indulgent and refreshing. Perfect for baby showers, gender reveals, baptisms, birthdays, and any celebration that calls for an elegant individual dessert. Custom toppers available on request, just let us know your theme when ordering.",
+    "image": "/images/flan-de-fresa.jpg",
+    "images": [],
+    "category": "Flanes",
+    "price": "$55.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy", "Eggs"],
+    "ingredients": ["Strawberry cake base", "Eggs", "Sweetened condensed milk", "Evaporated milk", "Vanilla extract", "Caramel", "Chantilly cream", "Fresh strawberries", "Fresh blueberries", "Fresh blackberries"],
+    "servingSize": "12 individual desserts"
   }
 ]
