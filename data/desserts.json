@@ -56,6 +56,20 @@
     "servingSize": "10-12 people"
   },
   {
+    "id": "red-velvet-mini-flan",
+    "name": "Red Velvet Mini Flan W/ Fresh Fruit",
+    "description": "Individual red velvet flan with a creamy caramel top, finished with dulce de leche and fresh berries.",
+    "longDescription": "A delicate twist on a classic flan, featuring a moist red velvet cake base topped with a silky, slow-baked custard and a glossy caramel finish. Each mini is hand-piped with dulce de leche and crowned with fresh strawberries and blueberries, served on a doily for an elegant presentation. Perfect for celebrations, gifts, or whenever you want a dessert that looks as beautiful as it tastes.",
+    "image": "/images/red-velvet-mini-flan.jpg",
+    "images": [],
+    "category": "Gelatinas",
+    "price": "$35.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy", "Eggs", "Wheat/Gluten"],
+    "ingredients": ["Red velvet cake base", "Eggs", "Sweetened condensed milk", "Evaporated milk", "Vanilla extract", "Caramel", "Dulce de leche", "Fresh strawberries", "Fresh blueberries"],
+    "servingSize": "12 mini flans"
+  },
+  {
     "id": "almond-flour-brownies",
     "name": "Almond Flour Brownies",
     "description": "Fudgy chocolate brownies made with almond flour, perfect for gluten-sensitive guests.",
