@@ -138,5 +138,19 @@
     "allergens": ["Dairy", "Eggs"],
     "ingredients": ["Strawberry cream cake base", "Cream cheese", "Eggs", "Sweetened condensed milk", "Evaporated milk", "Vanilla extract", "Caramel glaze", "Chantilly cream", "Fresh strawberries", "Fresh blueberries", "Fresh blackberries"],
     "servingSize": "10-12 people"
+  },
+  {
+    "id": "strawberry-carlota-cups",
+    "name": "Strawberry Carlota Cups",
+    "description": "Individual no-bake strawberry carlota with layers of cookie and creamy strawberry filling, topped with chantilly cream and fresh strawberries.",
+    "longDescription": "A classic Mexican-style carlota made with fresh strawberries, layered with soft cookies and a smooth, creamy strawberry filling for a light, chilled treat. Each cup is finished with a swirl of chantilly cream and a fresh strawberry slice. Refreshing, elegant, and perfect for parties, showers, or warm-weather gatherings.",
+    "image": "/images/strawberry-carlota-cups.jpg",
+    "images": [],
+    "category": "Gelatinas",
+    "price": "$30.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy"],
+    "ingredients": ["Fresh strawberries", "Maria cookies", "Heavy cream", "Sweetened condensed milk", "Cream cheese", "Chantilly cream", "Vanilla extract"],
+    "servingSize": "12 cups"
   }
 ]
