@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "fs"
+import { readFileSync } from "fs"
 import path from "path"
 
 export interface Dessert {
@@ -23,10 +23,6 @@ export function getDesserts(): Dessert[] {
   return JSON.parse(raw) as Dessert[]
 }
 
-export function saveDesserts(desserts: Dessert[]): void {
-  writeFileSync(DATA_PATH, JSON.stringify(desserts, null, 2), "utf-8")
-}
-
 export function getDessertById(id: string): Dessert | undefined {
   return getDesserts().find((d) => d.id === id)
 }
@@ -35,8 +31,4 @@ export function getDessertsByCategory(category: string): Dessert[] {
   const all = getDesserts()
   if (category === "All") return all
   return all.filter((d) => d.category === category)
-}
-
-export function slugify(name: string): string {
-  return name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")
 }

@@ -2,30 +2,14 @@
 
 import { useState, useEffect, useCallback } from "react"
 import { useRouter } from "next/navigation"
-import { Plus, Pencil, Trash2, LogOut, ChevronRight, Cookie } from "lucide-react"
+import { LogOut, Cookie, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog"
-import DessertForm from "@/components/admin/dessert-form"
 import type { Dessert } from "@/lib/desserts"
-
-type View = "list" | "add" | "edit"
 
 export default function AdminPage() {
   const router = useRouter()
   const [desserts, setDesserts] = useState<Dessert[]>([])
-  const [view, setView] = useState<View>("list")
-  const [editing, setEditing] = useState<Dessert | null>(null)
-  const [deleteTarget, setDeleteTarget] = useState<Dessert | null>(null)
   const [loading, setLoading] = useState(true)
 
   const getAuthHeaders = useCallback(() => {
@@ -51,41 +35,9 @@ export default function AdminPage() {
     fetchDesserts()
   }, [fetchDesserts])
 
-  async function handleLogout() {
+  function handleLogout() {
     localStorage.removeItem("admin_token")
     router.push("/admin/login")
-  }
-
-  async function handleAdd(data: Partial<Dessert>) {
-    await fetch("/api/admin/desserts", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", ...getAuthHeaders() },
-      body: JSON.stringify(data),
-    })
-    await fetchDesserts()
-    setView("list")
-  }
-
-  async function handleEdit(data: Partial<Dessert>) {
-    if (!editing) return
-    await fetch(`/api/admin/desserts/${editing.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json", ...getAuthHeaders() },
-      body: JSON.stringify(data),
-    })
-    await fetchDesserts()
-    setView("list")
-    setEditing(null)
-  }
-
-  async function handleDelete() {
-    if (!deleteTarget) return
-    await fetch(`/api/admin/desserts/${deleteTarget.id}`, { 
-      method: "DELETE",
-      headers: getAuthHeaders(),
-    })
-    await fetchDesserts()
-    setDeleteTarget(null)
   }
 
   return (
@@ -110,112 +62,58 @@ export default function AdminPage() {
       </header>
 
       <div className="max-w-4xl mx-auto px-6 py-8">
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-1 text-sm text-muted-foreground mb-6">
-          <span
-            className={view === "list" ? "text-foreground font-medium" : "cursor-pointer hover:text-foreground"}
-            onClick={() => { setView("list"); setEditing(null) }}
-          >
-            Desserts
-          </span>
-          {view !== "list" && (
-            <>
-              <ChevronRight className="w-3 h-3" />
-              <span className="text-foreground font-medium">
-                {view === "add" ? "Add New" : `Edit — ${editing?.name}`}
-              </span>
-            </>
-          )}
+        {/* Info banner */}
+        <div className="bg-secondary/50 border border-border rounded-lg p-4 mb-6">
+          <p className="text-sm text-muted-foreground">
+            This is a view-only dashboard. To add, edit, or remove desserts, contact your developer through v0.
+          </p>
         </div>
 
-        {/* List view */}
-        {view === "list" && (
-          <>
-            <div className="flex items-center justify-between mb-5">
-              <p className="text-sm text-muted-foreground">{desserts.length} dessert{desserts.length !== 1 ? "s" : ""}</p>
-              <Button onClick={() => setView("add")} className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Plus className="w-4 h-4 mr-1" /> Add Dessert
-              </Button>
-            </div>
+        {/* Stats */}
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="font-serif text-xl font-semibold text-foreground">Your Desserts</h2>
+          <p className="text-sm text-muted-foreground">{desserts.length} item{desserts.length !== 1 ? "s" : ""}</p>
+        </div>
 
-            {loading ? (
-              <div className="text-center py-16 text-muted-foreground">Loading...</div>
-            ) : (
-              <div className="space-y-3">
-                {desserts.map((d) => (
-                  <Card key={d.id} className="border border-border">
-                    <CardContent className="flex items-center gap-4 py-4 px-5">
-                      {/* Color swatch placeholder */}
-                      <div className="w-12 h-12 rounded-lg bg-secondary flex-shrink-0 overflow-hidden">
-                        {d.image && (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={d.image} alt={d.name} className="w-full h-full object-cover" />
-                        )}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium text-foreground truncate">{d.name}</p>
-                        <p className="text-sm text-muted-foreground">{d.category} · {d.price}</p>
-                      </div>
-                      <div className="flex gap-2 flex-shrink-0">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => { setEditing(d); setView("edit") }}
-                          className="text-muted-foreground hover:text-foreground"
-                        >
-                          <Pencil className="w-4 h-4" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => setDeleteTarget(d)}
-                          className="text-muted-foreground hover:text-destructive"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            )}
-          </>
-        )}
-
-        {/* Add / Edit form */}
-        {(view === "add" || view === "edit") && (
-          <Card className="border border-border">
-            <CardContent className="py-6 px-6">
-              <h2 className="font-serif text-xl font-semibold text-foreground mb-6">
-                {view === "add" ? "Add New Dessert" : `Edit — ${editing?.name}`}
-              </h2>
-              <DessertForm
-                initial={editing ?? undefined}
-                onSave={view === "add" ? handleAdd : handleEdit}
-                onCancel={() => { setView("list"); setEditing(null) }}
-              />
-            </CardContent>
-          </Card>
+        {loading ? (
+          <div className="text-center py-16 text-muted-foreground">Loading...</div>
+        ) : (
+          <div className="space-y-3">
+            {desserts.map((d) => (
+              <Card key={d.id} className="border border-border">
+                <CardContent className="flex items-center gap-4 py-4 px-5">
+                  {/* Thumbnail */}
+                  <div className="w-14 h-14 rounded-lg bg-secondary flex-shrink-0 overflow-hidden">
+                    {d.image && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={d.image} alt={d.name} className="w-full h-full object-cover" />
+                    )}
+                  </div>
+                  {/* Details */}
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-foreground truncate">{d.name}</p>
+                    <p className="text-sm text-muted-foreground">{d.category}</p>
+                  </div>
+                  {/* Price */}
+                  <div className="text-right flex-shrink-0">
+                    <p className="font-medium text-foreground">{d.price}</p>
+                    {d.priceNote && <p className="text-xs text-muted-foreground">{d.priceNote}</p>}
+                  </div>
+                  {/* View link */}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => window.open(`/desserts/${d.id}`, "_blank")}
+                    className="text-muted-foreground hover:text-foreground flex-shrink-0"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         )}
       </div>
-
-      {/* Delete confirmation */}
-      <AlertDialog open={!!deleteTarget} onOpenChange={(open) => !open && setDeleteTarget(null)}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Delete &quot;{deleteTarget?.name}&quot;?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This will permanently remove the dessert from your collection. This action cannot be undone.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDelete} className="bg-destructive text-white hover:bg-destructive/90">
-              Delete
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
     </main>
   )
 }
