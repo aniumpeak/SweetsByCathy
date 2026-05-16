@@ -14,7 +14,7 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Cathy's Sweet Creations | Homemade Desserts",
+  title: "Sweets By Cathy | Homemade Desserts",
   description: 'Discover our handcrafted desserts made with love. From decadent cakes to delicate pastries, each creation is a sweet masterpiece.',
   generator: 'v0.app',
   icons: {
