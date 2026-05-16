@@ -96,5 +96,19 @@
     "allergens": ["Dairy"],
     "ingredients": ["Strawberry gelatin", "Sweetened condensed milk", "Evaporated milk", "Heavy cream", "Chantilly cream", "Fresh strawberries", "Fresh blueberries"],
     "servingSize": "12 gelatinas"
+  },
+  {
+    "id": "gelatina-de-fresa-con-crema",
+    "name": "Gelatina de Fresa con Crema",
+    "description": "Individual layered strawberry and cream gelatina in clear cups, finished with chantilly cream and custom themed toppers.",
+    "longDescription": "A beautiful three-layer gelatina with a bright strawberry base, a soft pink milk middle, and a creamy white top, served in individual clear cups to show off the layers. Each one is finished with a swirl of chantilly cream and easily customized with themed toppers. Perfect for baby showers, gender reveals, birthdays, quinceañeras, and any celebration that calls for an elegant dessert table. Custom toppers available on request, just let us know your theme when ordering.",
+    "image": "/images/gelatina-de-fresa-con-crema.jpg",
+    "images": [],
+    "category": "Gelatinas",
+    "price": "$35.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy"],
+    "ingredients": ["Strawberry gelatin", "Sweetened condensed milk", "Evaporated milk", "Heavy cream", "Chantilly cream", "Custom toppers"],
+    "servingSize": "12 gelatinas"
   }
 ]
