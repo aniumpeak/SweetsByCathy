@@ -75,7 +75,7 @@
     "description": "Individual chocoflan drizzled with chocolate and dulce de leche, topped with fresh berries and crushed nuts.",
     "longDescription": "A personal-sized chocoflan with a rich chocolate cake base and a silky vanilla flan layer on top, finished with drizzles of chocolate and dulce de leche. Each one is crowned with fresh strawberries and blueberries and sprinkled with crushed nuts for a delicate crunch. A beautiful balance of deep chocolate, creamy custard, and bright fruit in every bite.",
     "image": "/images/choco-flan-mini.jpg",
-    "images": [],
+    "images": ["/images/choco-flan-mini-2.jpg"],
     "category": "Gelatinas",
     "price": "$35.00",
     "priceNote": "per dozen",
