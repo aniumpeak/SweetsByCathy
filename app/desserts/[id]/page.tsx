@@ -53,7 +53,7 @@ export default async function DessertPage({ params }: { params: Promise<{ id: st
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Image Gallery */}
           <ImageGallery
-            images={dessert.images && dessert.images.length > 0 ? dessert.images : [dessert.image]}
+            images={[dessert.image, ...(dessert.images || [])]}
             name={dessert.name}
           />
 
