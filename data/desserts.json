@@ -82,5 +82,19 @@
     "allergens": ["Dairy", "Eggs"],
     "ingredients": ["Chocolate cake base", "Eggs", "Sweetened condensed milk", "Evaporated milk", "Vanilla extract", "Caramel", "Dulce de leche"],
     "servingSize": "12 mini flans"
+  },
+  {
+    "id": "gelatina-de-fresa",
+    "name": "Gelatina de Fresa with Fresh Fruit",
+    "description": "Individual layered strawberry gelatin with a creamy milk base, topped with chantilly cream, fresh strawberries, and blueberries.",
+    "longDescription": "A beautiful two-layer gelatina featuring a vibrant strawberry top and a smooth, creamy milk base for a perfect balance of fruity and rich in every bite. Each one is finished with a swirl of chantilly cream and crowned with a glazed strawberry and fresh blueberries. Light, refreshing, and elegant — ideal for parties, baby showers, baptisms, and any celebration that calls for a colorful dessert table.",
+    "image": "/images/gelatina-de-fresa.jpg",
+    "images": [],
+    "category": "Gelatinas",
+    "price": "$35.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy"],
+    "ingredients": ["Strawberry gelatin", "Sweetened condensed milk", "Evaporated milk", "Heavy cream", "Chantilly cream", "Fresh strawberries", "Fresh blueberries"],
+    "servingSize": "12 gelatinas"
   }
 ]
