@@ -124,5 +124,19 @@
     "allergens": ["Dairy"],
     "ingredients": ["Strawberry gelatin", "Sweetened condensed milk", "Evaporated milk", "Heavy cream", "Chantilly cream", "Edible butterfly and floral toppers"],
     "servingSize": "12 gelatinas"
+  },
+  {
+    "id": "gelatina-mosaico-de-mora",
+    "name": "Gelatina Mosaico de Mora con 3 Leches",
+    "description": "Individual mosaic gelatina with blue blackberry cubes suspended in a creamy tres leches base, finished with chantilly cream and themed toppers.",
+    "longDescription": "A beautiful mosaic-style gelatina featuring jewel-like blackberry gelatin cubes suspended in a rich, creamy tres leches base. Each individual portion is molded for an elegant shape and finished with a swirl of chantilly cream, a sprinkle of sugar pearls, and a custom themed topper. The combination of fruity gelatin and silky tres leches creates a soft, refreshing bite that feels both classic and special. Perfect for baptisms, baby showers, first communions, gender reveals, and any celebration that deserves a dessert as pretty as it is delicious. Custom toppers available on request, just let us know your theme when ordering.",
+    "image": "/images/gelatina-mosaico-de-mora.jpg",
+    "images": ["/images/gelatina-mosaico-de-mora-toppers.jpg"],
+    "category": "Gelatinas",
+    "price": "$35.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy"],
+    "ingredients": ["Blackberry gelatin", "Sweetened condensed milk", "Evaporated milk", "Heavy cream", "Chantilly cream", "Blue sugar pearls", "Custom themed toppers"],
+    "servingSize": "12 gelatinas"
   }
 ]
