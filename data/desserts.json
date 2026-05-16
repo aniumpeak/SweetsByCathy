@@ -124,5 +124,19 @@
     "allergens": ["Dairy", "Eggs"],
     "ingredients": ["Cream cheese", "Eggs", "Sugar", "Graham cracker crust", "Butter", "Dulce de leche", "Chocolate heart", "Red sugar"],
     "servingSize": "12 mini cheesecakes"
+  },
+  {
+    "id": "strawberry-cream-cheese-flan-cake",
+    "name": "Strawberry Cream Cheese Flan Cake with Fresh Fruit",
+    "description": "10\" strawberry cream cake topped with cheese flan, caramel, chantilly cream, and fresh fruit.",
+    "longDescription": "A showstopping 10\" layered dessert featuring a soft strawberry cream cake base topped with a silky cheese flan and finished with a glossy caramel glaze. Crowned with a ring of fresh strawberries, blueberries, and blackberries around a swirl of chantilly cream, this cake is as stunning to present as it is to eat. Perfect centerpiece for birthdays, anniversaries, and special celebrations.",
+    "image": "/images/strawberry-cream-cheese-flan-cake.jpg",
+    "images": [],
+    "category": "Cakes",
+    "price": "$45.00",
+    "priceNote": "10\" cake",
+    "allergens": ["Dairy", "Eggs"],
+    "ingredients": ["Strawberry cream cake base", "Cream cheese", "Eggs", "Sweetened condensed milk", "Evaporated milk", "Vanilla extract", "Caramel glaze", "Chantilly cream", "Fresh strawberries", "Fresh blueberries", "Fresh blackberries"],
+    "servingSize": "10-12 people"
   }
 ]
