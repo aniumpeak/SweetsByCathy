@@ -35,7 +35,8 @@ export default function DessertForm({ initial, onSave, onCancel }: DessertFormPr
   const [newIngredient, setNewIngredient] = useState("")
   const [newImage, setNewImage] = useState("")
   const [saving, setSaving] = useState(false)
-  const [uploading, setUploading] = useState(false)
+  const [uploadingMain, setUploadingMain] = useState(false)
+  const [uploadingAdditional, setUploadingAdditional] = useState(false)
 
   function set(field: string, value: unknown) {
     setForm((f) => ({ ...f, [field]: value }))
@@ -63,11 +64,40 @@ export default function DessertForm({ initial, onSave, onCancel }: DessertFormPr
     set("images", form.images.filter((_: string, i: number) => i !== index))
   }
 
+  async function handleMainImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.currentTarget.files?.[0]
+    if (!file) return
+
+    setUploadingMain(true)
+    try {
+      const formData = new FormData()
+      formData.append("file", file)
+
+      const token = localStorage.getItem("admin_token")
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+        body: formData,
+      })
+
+      if (!res.ok) throw new Error("Upload failed")
+
+      const { path } = await res.json()
+      set("image", path)
+    } catch (error) {
+      console.error("Upload error:", error)
+      alert("Failed to upload image")
+    } finally {
+      setUploadingMain(false)
+      e.currentTarget.value = ""
+    }
+  }
+
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.currentTarget.files?.[0]
     if (!file) return
 
-    setUploading(true)
+    setUploadingAdditional(true)
     try {
       const formData = new FormData()
       formData.append("file", file)
@@ -87,7 +117,7 @@ export default function DessertForm({ initial, onSave, onCancel }: DessertFormPr
       console.error("Upload error:", error)
       alert("Failed to upload image")
     } finally {
-      setUploading(false)
+      setUploadingAdditional(false)
       e.currentTarget.value = ""
     }
   }
@@ -151,34 +181,60 @@ export default function DessertForm({ initial, onSave, onCancel }: DessertFormPr
 
       {/* Main image */}
       <div className="space-y-1.5">
-        <Label>Main Image Path</Label>
-        <Input value={form.image} onChange={(e) => set("image", e.target.value)} placeholder="/images/my-dessert.jpg" />
+        <Label>Main Image</Label>
+        <div className="flex flex-col gap-2">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleMainImageUpload}
+            disabled={uploadingMain}
+            className="hidden"
+            id="main-image-upload"
+          />
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full"
+            onClick={() => document.getElementById("main-image-upload")?.click()}
+            disabled={uploadingMain}
+          >
+            <Upload className="w-4 h-4 mr-1" />
+            {uploadingMain ? "Uploading..." : "Upload Main Image"}
+          </Button>
+          {form.image && (
+            <div className="flex items-center gap-2 bg-secondary text-secondary-foreground text-sm rounded-md px-3 py-2">
+              <img src={form.image} alt="Main" className="w-12 h-12 object-cover rounded" />
+              <span className="flex-1 truncate">{form.image}</span>
+              <button type="button" onClick={() => set("image", "")} className="text-muted-foreground hover:text-foreground">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Additional images */}
       <div className="space-y-1.5">
         <Label>Additional Images</Label>
         <div className="flex flex-col gap-2">
-          {/* Upload button */}
-          <label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              disabled={uploading}
-              className="hidden"
-            />
-            <Button
-              type="button"
-              variant="outline"
-              className="w-full cursor-pointer"
-              onClick={(e) => { e.currentTarget.parentElement?.querySelector("input")?.click() }}
-              disabled={uploading}
-            >
-              <Upload className="w-4 h-4 mr-1" />
-              {uploading ? "Uploading..." : "Upload Image"}
-            </Button>
-          </label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            disabled={uploadingAdditional}
+            className="hidden"
+            id="additional-image-upload"
+          />
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full"
+            onClick={() => document.getElementById("additional-image-upload")?.click()}
+            disabled={uploadingAdditional}
+          >
+            <Upload className="w-4 h-4 mr-1" />
+            {uploadingAdditional ? "Uploading..." : "Upload Additional Image"}
+          </Button>
           {/* Or manual path entry */}
           <div className="flex gap-2">
             <Input value={newImage} onChange={(e) => setNewImage(e.target.value)} placeholder="/images/another-angle.jpg" onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addImage() }}} />
@@ -186,12 +242,15 @@ export default function DessertForm({ initial, onSave, onCancel }: DessertFormPr
           </div>
         </div>
         {form.images.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-2">
+          <div className="flex flex-col gap-2 mt-2">
             {form.images.map((img: string, i: number) => (
-              <span key={i} className="inline-flex items-center gap-1 bg-secondary text-secondary-foreground text-xs rounded-full px-3 py-1">
-                {img}
-                <button type="button" onClick={() => removeImage(i)}><X className="w-3 h-3" /></button>
-              </span>
+              <div key={i} className="flex items-center gap-2 bg-secondary text-secondary-foreground text-sm rounded-md px-3 py-2">
+                <img src={img} alt={`Image ${i + 1}`} className="w-10 h-10 object-cover rounded" />
+                <span className="flex-1 truncate">{img}</span>
+                <button type="button" onClick={() => removeImage(i)} className="text-muted-foreground hover:text-foreground">
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
             ))}
           </div>
         )}
