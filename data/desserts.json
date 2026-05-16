@@ -56,12 +56,12 @@
     "servingSize": "10-12 people"
   },
   {
-    "id": "strawberry-carlota-cups",
-    "name": "Strawberry Carlota Cups",
+    "id": "carlota-de-fresa",
+    "name": "Carlota de Fresa",
     "description": "Individual no-bake strawberry carlota with layers of cookie and creamy strawberry filling, topped with chantilly cream and fresh strawberries.",
     "longDescription": "A classic Mexican-style carlota made with fresh strawberries, layered with soft cookies and a smooth, creamy strawberry filling for a light, chilled treat. Each cup is finished with a swirl of chantilly cream and a fresh strawberry slice. Refreshing, elegant, and perfect for parties, showers, or warm-weather gatherings.",
-    "image": "/images/strawberry-carlota-cups.jpg",
-    "images": [],
+    "image": "/images/carlota-de-fresa.jpg",
+    "images": ["/images/strawberry-carlota-cups.jpg"],
     "category": "Cupcakes",
     "price": "$30.00",
     "priceNote": "per dozen",
