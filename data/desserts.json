@@ -1,19 +1,5 @@
 [
   {
-    "id": "chocolate-lava-cake",
-    "name": "Chocolate Lava Cake",
-    "description": "Rich, decadent chocolate cake with a molten center that flows when you cut into it.",
-    "longDescription": "Indulge in our signature Chocolate Lava Cake, a heavenly dessert that combines a perfectly baked chocolate exterior with a warm, gooey molten center. Each cake is individually portioned and baked to perfection, ensuring that satisfying moment when you break through the crust to reveal the flowing chocolate within. Served warm and dusted with powdered sugar, this is the ultimate treat for chocolate lovers.",
-    "image": "/images/chocolate-lava-cake.jpg",
-    "images": [],
-    "category": "Cakes",
-    "price": "$8.00",
-    "priceNote": "per individual cake",
-    "allergens": ["Dairy", "Eggs", "Wheat/Gluten"],
-    "ingredients": ["Dark chocolate", "Butter", "Eggs", "Sugar", "All-purpose flour", "Vanilla extract", "Powdered sugar"],
-    "servingSize": "1 person"
-  },
-  {
     "id": "red-velvet-mini-flan",
     "name": "Red Velvet Mini Flan with Fresh Fruit",
     "description": "Individual red velvet flan with a creamy caramel top, finished with dulce de leche and fresh berries.",
