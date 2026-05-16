@@ -11,6 +11,7 @@ export interface Dessert {
   category: string
   price: string
   priceNote?: string
+  singlePrice?: string
   allergens: string[]
   ingredients: string[]
   servingSize?: string
