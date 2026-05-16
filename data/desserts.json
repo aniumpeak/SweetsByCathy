@@ -110,5 +110,19 @@
     "allergens": ["Dairy"],
     "ingredients": ["Strawberry gelatin", "Sweetened condensed milk", "Evaporated milk", "Heavy cream", "Chantilly cream", "Custom toppers"],
     "servingSize": "12 gelatinas"
+  },
+  {
+    "id": "gelatina-mosaico-de-fresas",
+    "name": "Gelatina Mosaico de Fresas con 3 Leches",
+    "description": "Individual mosaic gelatina with pink strawberry cubes suspended in a creamy tres leches base, finished with chantilly cream and edible decorations.",
+    "longDescription": "A beautiful mosaic-style gelatina featuring jewel-like pink strawberry gelatin cubes suspended in a rich, creamy tres leches base. Each individual portion is molded for an elegant shape and finished with a swirl of chantilly cream and a delicate edible butterfly or floral topper. The combination of fruity gelatin and silky tres leches creates a soft, refreshing bite that feels both classic and special. Perfect for baby showers, bridal showers, quinceañeras, baptisms, and any celebration that deserves a dessert as pretty as it is delicious. Custom toppers available on request, just let us know your theme when ordering.",
+    "image": "/images/gelatina-mosaico-de-fresas.jpg",
+    "images": [],
+    "category": "Gelatinas",
+    "price": "$35.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy"],
+    "ingredients": ["Strawberry gelatin", "Sweetened condensed milk", "Evaporated milk", "Heavy cream", "Chantilly cream", "Edible butterfly and floral toppers"],
+    "servingSize": "12 gelatinas"
   }
 ]
