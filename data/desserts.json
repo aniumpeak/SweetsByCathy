@@ -70,6 +70,20 @@
     "servingSize": "12 mini flans"
   },
   {
+    "id": "choco-flan-mini",
+    "name": "Choco Flan Mini with Dulce de Leche & Fresh Fruit",
+    "description": "Individual chocoflan drizzled with chocolate and dulce de leche, topped with fresh berries and crushed nuts.",
+    "longDescription": "A personal-sized chocoflan with a rich chocolate cake base and a silky vanilla flan layer on top, finished with drizzles of chocolate and dulce de leche. Each one is crowned with fresh strawberries and blueberries and sprinkled with crushed nuts for a delicate crunch. A beautiful balance of deep chocolate, creamy custard, and bright fruit in every bite.",
+    "image": "/images/choco-flan-mini.jpg",
+    "images": [],
+    "category": "Gelatinas",
+    "price": "$35.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy", "Eggs", "Tree Nuts"],
+    "ingredients": ["Chocolate cake base", "Eggs", "Sweetened condensed milk", "Evaporated milk", "Vanilla extract", "Chocolate drizzle", "Dulce de leche", "Fresh strawberries", "Fresh blueberries", "Crushed nuts"],
+    "servingSize": "12 mini flans"
+  },
+  {
     "id": "almond-flour-brownies",
     "name": "Almond Flour Brownies",
     "description": "Fudgy chocolate brownies made with almond flour, perfect for gluten-sensitive guests.",
