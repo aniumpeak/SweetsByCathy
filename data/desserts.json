@@ -96,5 +96,19 @@
     "allergens": ["Dairy", "Eggs", "Wheat/Gluten"],
     "ingredients": ["Cream cheese", "Sour cream", "Eggs", "Sugar", "Vanilla extract", "Graham crackers", "Butter", "All-purpose flour"],
     "servingSize": "8-10 people"
+  },
+  {
+    "id": "chocolate-dulce-mini-cheesecake",
+    "name": "Chocolate & Dulce de Leche Mini Cheesecake",
+    "description": "Individual cheesecake in a graham crust, topped with piped dulce de leche and a chocolate heart.",
+    "longDescription": "A personal-sized cheesecake baked in a buttery graham cracker crust, with a smooth and creamy filling finished with rich piped dulce de leche around the edge. Each one is dusted with red sugar and crowned with a chocolate heart, making it as charming as it is delicious. Perfect for Valentine's Day, anniversaries, gift boxes, or any occasion that calls for a sweet, eye-catching treat.",
+    "image": "/images/chocolate-dulce-mini-cheesecake.jpg",
+    "images": [],
+    "category": "Cakes",
+    "price": "$30.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy", "Eggs"],
+    "ingredients": ["Cream cheese", "Eggs", "Sugar", "Graham cracker crust", "Butter", "Dulce de leche", "Chocolate heart", "Red sugar"],
+    "servingSize": "12 mini cheesecakes"
   }
 ]
