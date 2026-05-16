@@ -133,7 +133,7 @@ export default async function DessertPage({ params }: { params: Promise<{ id: st
                 </p>
                 <div className="bg-secondary rounded-lg p-4 mb-4">
                   <p className="text-sm text-muted-foreground mb-1">Pay via Venmo:</p>
-                  <p className="text-lg font-semibold text-primary">@CathysSweetCreations</p>
+                  <p className="text-lg font-semibold text-primary">@yellowlady29</p>
                   <p className="text-xs text-muted-foreground mt-2">
                     Include your name and order details in the payment note
                   </p>
@@ -142,7 +142,7 @@ export default async function DessertPage({ params }: { params: Promise<{ id: st
                   <p><strong>How to order:</strong></p>
                   <ol className="list-decimal list-inside space-y-1 ml-2">
                     <li>Contact Cathy to confirm your order and pickup/delivery details</li>
-                    <li>Send payment via Venmo to @CathysSweetCreations</li>
+                    <li>Send payment via Venmo to @yellowlady29</li>
                     <li>Include your name, item(s), and quantity in the payment note</li>
                     <li>Wait for confirmation before your pickup date</li>
                   </ol>
