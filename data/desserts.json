@@ -68,5 +68,19 @@
     "allergens": ["Dairy"],
     "ingredients": ["Fresh strawberries", "Maria cookies", "Heavy cream", "Sweetened condensed milk", "Cream cheese", "Chantilly cream", "Vanilla extract"],
     "servingSize": "12 cups"
+  },
+  {
+    "id": "choco-flan-heart-mini",
+    "name": "Choco Flan Heart Mini with Dulce de Leche",
+    "description": "Heart-shaped individual chocoflan with a chocolate cake base, silky flan top, and a dulce de leche swirl.",
+    "longDescription": "A personal-sized heart-shaped chocoflan featuring a rich chocolate cake base topped with a silky vanilla flan layer and finished with a glossy caramel top and a dulce de leche swirl. Elegant, romantic, and easy to personalize for any occasion. Custom toppers available on request for baptisms, weddings, anniversaries, birthdays, Valentine's Day, and other special celebrations — just let us know your theme when ordering.",
+    "image": "/images/choco-flan-heart-mini-box.jpg",
+    "images": ["/images/choco-flan-heart-mini-single.jpg"],
+    "category": "Choco Flan",
+    "price": "$35.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy", "Eggs"],
+    "ingredients": ["Chocolate cake base", "Eggs", "Sweetened condensed milk", "Evaporated milk", "Vanilla extract", "Caramel", "Dulce de leche"],
+    "servingSize": "12 mini flans"
   }
 ]
