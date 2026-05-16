@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { writeFile, mkdir } from "fs/promises"
-import { join } from "path"
+import { put } from "@vercel/blob"
 import { isAuthenticatedFromHeader } from "@/lib/auth"
 
 export async function POST(request: NextRequest) {
@@ -24,19 +23,15 @@ export async function POST(request: NextRequest) {
 
     // Generate unique filename
     const timestamp = Date.now()
-    const filename = `${timestamp}-${file.name.replace(/\s+/g, "-")}`
-    const filepath = join(process.cwd(), "public", "images", filename)
+    const filename = `desserts/${timestamp}-${file.name.replace(/\s+/g, "-")}`
 
-    // Ensure directory exists
-    await mkdir(join(process.cwd(), "public", "images"), { recursive: true })
+    // Upload to Vercel Blob (public access for images)
+    const blob = await put(filename, file, {
+      access: "public",
+    })
 
-    // Write file
-    const bytes = await file.arrayBuffer()
-    await writeFile(filepath, Buffer.from(bytes))
-
-    // Return the public path
-    const publicPath = `/images/${filename}`
-    return NextResponse.json({ path: publicPath })
+    // Return the public URL
+    return NextResponse.json({ path: blob.url })
   } catch (error) {
     console.error("Upload error:", error)
     return NextResponse.json({ error: "Upload failed" }, { status: 500 })
