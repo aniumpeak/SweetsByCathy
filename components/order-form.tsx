@@ -12,7 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { CheckCircle2 } from "lucide-react"
+import { CheckCircle2, AlertCircle } from "lucide-react"
 
 interface OrderFormProps {
   dessertName: string
@@ -23,41 +23,58 @@ interface OrderFormProps {
 export function OrderForm({ dessertName, dessertPrice, priceNote }: OrderFormProps) {
   const [open, setOpen] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    setIsLoading(true)
+    setError("")
 
-    const formData = new FormData(e.currentTarget)
-    const name = formData.get("name") as string
-    const phone = formData.get("phone") as string
-    const quantity = formData.get("quantity") as string
-    const pickupDate = formData.get("pickupDate") as string
-    const specialRequests = formData.get("specialRequests") as string
+    try {
+      const formData = new FormData(e.currentTarget)
+      const name = formData.get("name") as string
+      const phone = formData.get("phone") as string
+      const quantity = formData.get("quantity") as string
+      const pickupDate = formData.get("pickupDate") as string
+      const specialRequests = formData.get("specialRequests") as string
 
-    const subject = encodeURIComponent(`New Order Request – ${dessertName}`)
-    const body = encodeURIComponent(
-      `Hi Cathy, you have a new order request!\n\n` +
-      `----------------------------\n` +
-      `DESSERT: ${dessertName}\n` +
-      `PRICE: ${dessertPrice} (${priceNote})\n` +
-      `QUANTITY: ${quantity}\n` +
-      `PICKUP DATE: ${pickupDate}\n` +
-      `----------------------------\n\n` +
-      `CUSTOMER DETAILS:\n` +
-      `Name: ${name}\n` +
-      `Phone: ${phone}\n` +
-      (specialRequests ? `Special Requests: ${specialRequests}\n` : "") +
-      `\nPlease reach out to confirm the order!`
-    )
+      const payload = new FormData()
+      payload.append("Dessert", dessertName)
+      payload.append("Price", dessertPrice)
+      payload.append("Customer Name", name)
+      payload.append("Phone", phone)
+      payload.append("Quantity", quantity)
+      payload.append("Pickup Date", pickupDate)
+      if (specialRequests) {
+        payload.append("Special Requests", specialRequests)
+      }
 
-    window.location.href = `mailto:yellowlady29@aol.com?subject=${subject}&body=${body}`
-    setIsSubmitted(true)
+      const response = await fetch("https://formspree.io/f/mvzypbgv", {
+        method: "POST",
+        body: payload,
+      })
+
+      if (response.ok) {
+        setIsSubmitted(true)
+      } else {
+        setError("Something went wrong. Please try again.")
+      }
+    } catch (err) {
+      setError("Failed to submit order. Please try again.")
+      console.error("Form submission error:", err)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   function handleOpenChange(newOpen: boolean) {
     setOpen(newOpen)
     if (!newOpen) {
-      setTimeout(() => setIsSubmitted(false), 300)
+      setTimeout(() => {
+        setIsSubmitted(false)
+        setError("")
+      }, 300)
     }
   }
 
@@ -108,6 +125,13 @@ export function OrderForm({ dessertName, dessertPrice, priceNote }: OrderFormPro
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4 mt-2">
+              {error && (
+                <div className="flex items-center gap-2 bg-destructive/10 border border-destructive/30 rounded-lg p-3">
+                  <AlertCircle className="w-4 h-4 text-destructive flex-shrink-0" />
+                  <p className="text-sm text-destructive">{error}</p>
+                </div>
+              )}
+
               <div className="space-y-1.5">
                 <Label htmlFor="name">Full Name <span className="text-primary">*</span></Label>
                 <Input id="name" name="name" placeholder="Your full name" required />
@@ -151,8 +175,8 @@ export function OrderForm({ dessertName, dessertPrice, priceNote }: OrderFormPro
                 />
               </div>
 
-              <Button type="submit" className="w-full mt-2" size="lg">
-                Place Order Request
+              <Button type="submit" className="w-full mt-2" size="lg" disabled={isLoading}>
+                {isLoading ? "Submitting..." : "Place Order Request"}
               </Button>
               <p className="text-center text-xs text-muted-foreground pb-1">
                 Cathy will contact you to confirm before any payment is needed.
