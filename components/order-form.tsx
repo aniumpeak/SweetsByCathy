@@ -153,7 +153,7 @@ export function OrderForm({ dessertName, dessertPrice, priceNote }: OrderFormPro
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <Label htmlFor="pickupDate">Pickup Date <span className="text-primary">*</span></Label>
+                  <Label htmlFor="pickupDate">Desired Pickup Date <span className="text-primary">*</span></Label>
                   <Input
                     id="pickupDate"
                     name="pickupDate"
