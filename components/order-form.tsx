@@ -39,30 +39,35 @@ export function OrderForm({ dessertName, dessertPrice, priceNote }: OrderFormPro
       const pickupDate = formData.get("pickupDate") as string
       const specialRequests = formData.get("specialRequests") as string
 
-      const payload = new FormData()
-      payload.append("Dessert", dessertName)
-      payload.append("Price", dessertPrice)
-      payload.append("Customer Name", name)
-      payload.append("Phone", phone)
-      payload.append("Quantity", quantity)
-      payload.append("Pickup Date", pickupDate)
-      if (specialRequests) {
-        payload.append("Special Requests", specialRequests)
+      // Prepare data object for Formspree
+      const orderData = {
+        Dessert: dessertName,
+        Price: dessertPrice,
+        "Customer Name": name,
+        Phone: phone,
+        Quantity: quantity,
+        "Pickup Date": pickupDate,
+        ...(specialRequests && { "Special Requests": specialRequests }),
       }
 
       const response = await fetch("https://formspree.io/f/mvzypbgv", {
         method: "POST",
-        body: payload,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
       })
 
       if (response.ok) {
         setIsSubmitted(true)
       } else {
+        const data = await response.json()
+        console.error("[v0] Formspree error:", data)
         setError("Something went wrong. Please try again.")
       }
     } catch (err) {
+      console.error("[v0] Form submission error:", err)
       setError("Failed to submit order. Please try again.")
-      console.error("Form submission error:", err)
     } finally {
       setIsLoading(false)
     }
