@@ -93,27 +93,27 @@ export function OrderForm({ dessertName, dessertPrice, priceNote }: OrderFormPro
       <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
         {isSubmitted ? (
           <div className="text-center py-8 px-2">
-            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mx-auto mb-4">
-              <CheckCircle2 className="h-9 w-9 text-green-600" />
+            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 mx-auto mb-4">
+              <AlertCircle className="h-9 w-9 text-amber-600" />
             </div>
             <DialogHeader>
-              <DialogTitle className="text-xl mb-2">Order Request Sent!</DialogTitle>
+              <DialogTitle className="text-xl mb-2">Order Request Received</DialogTitle>
             </DialogHeader>
             <p className="text-muted-foreground text-sm mt-2 mb-6">
-              Cathy will reach out to confirm your order and arrange pickup details.
+              Your order details have been submitted. <strong>Payment is required to complete your order.</strong>
             </p>
-            <div className="bg-secondary rounded-xl p-4 text-left mb-6">
-              <p className="text-sm font-semibold text-foreground mb-1">Complete your order with payment</p>
+            <div className="bg-primary/10 border-2 border-primary rounded-xl p-4 text-left mb-6">
+              <p className="text-sm font-semibold text-foreground mb-2">⚠️ Next Step: Send Payment</p>
               <p className="text-sm text-muted-foreground mb-3">
-                Once confirmed, send payment via Venmo:
+                To secure your order and confirm your pickup date, send payment via Venmo:
               </p>
-              <p className="text-xl font-bold text-primary">@yellowlady29</p>
-              <p className="text-xs text-muted-foreground mt-2">
-                Include your name and dessert in the payment note
+              <p className="text-xl font-bold text-primary text-center py-2">@yellowlady29</p>
+              <p className="text-xs text-muted-foreground mt-3 bg-background/50 p-2 rounded">
+                <strong>Include in payment note:</strong> Your name, dessert name, quantity, and desired pickup date
               </p>
             </div>
             <Button className="w-full" variant="outline" onClick={() => handleOpenChange(false)}>
-              Done
+              Close
             </Button>
           </div>
         ) : (
