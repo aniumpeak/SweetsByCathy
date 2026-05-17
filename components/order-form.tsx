@@ -8,12 +8,11 @@ import { Textarea } from "@/components/ui/textarea"
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { CheckCircle2, Loader2 } from "lucide-react"
+import { CheckCircle2 } from "lucide-react"
 
 interface OrderFormProps {
   dessertName: string
@@ -23,53 +22,42 @@ interface OrderFormProps {
 
 export function OrderForm({ dessertName, dessertPrice, priceNote }: OrderFormProps) {
   const [open, setOpen] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [error, setError] = useState("")
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setIsSubmitting(true)
-    setError("")
 
     const formData = new FormData(e.currentTarget)
-    const data = {
-      name: formData.get("name") as string,
-      phone: formData.get("phone") as string,
-      email: formData.get("email") as string,
-      dessertName,
-      quantity: formData.get("quantity") as string,
-      pickupDate: formData.get("pickupDate") as string,
-      specialRequests: formData.get("specialRequests") as string,
-    }
+    const name = formData.get("name") as string
+    const phone = formData.get("phone") as string
+    const quantity = formData.get("quantity") as string
+    const pickupDate = formData.get("pickupDate") as string
+    const specialRequests = formData.get("specialRequests") as string
 
-    try {
-      const response = await fetch("/api/order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      })
+    const subject = encodeURIComponent(`New Order Request – ${dessertName}`)
+    const body = encodeURIComponent(
+      `Hi Cathy, you have a new order request!\n\n` +
+      `----------------------------\n` +
+      `DESSERT: ${dessertName}\n` +
+      `PRICE: ${dessertPrice} (${priceNote})\n` +
+      `QUANTITY: ${quantity}\n` +
+      `PICKUP DATE: ${pickupDate}\n` +
+      `----------------------------\n\n` +
+      `CUSTOMER DETAILS:\n` +
+      `Name: ${name}\n` +
+      `Phone: ${phone}\n` +
+      (specialRequests ? `Special Requests: ${specialRequests}\n` : "") +
+      `\nPlease reach out to confirm the order!`
+    )
 
-      if (!response.ok) {
-        throw new Error("Failed to submit order")
-      }
-
-      setIsSubmitted(true)
-    } catch {
-      setError("Something went wrong. Please try again or contact us directly.")
-    } finally {
-      setIsSubmitting(false)
-    }
+    window.location.href = `mailto:yellowlady29@aol.com?subject=${subject}&body=${body}`
+    setIsSubmitted(true)
   }
 
   function handleOpenChange(newOpen: boolean) {
     setOpen(newOpen)
     if (!newOpen) {
-      // Reset form state when closing
-      setTimeout(() => {
-        setIsSubmitted(false)
-        setError("")
-      }, 300)
+      setTimeout(() => setIsSubmitted(false), 300)
     }
   }
 
@@ -80,126 +68,95 @@ export function OrderForm({ dessertName, dessertPrice, priceNote }: OrderFormPro
           Contact Cathy to Order
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
         {isSubmitted ? (
-          <div className="text-center py-6">
-            <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4" />
+          <div className="text-center py-8 px-2">
+            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mx-auto mb-4">
+              <CheckCircle2 className="h-9 w-9 text-green-600" />
+            </div>
             <DialogHeader>
-              <DialogTitle className="text-2xl mb-2">Order Submitted!</DialogTitle>
-              <DialogDescription className="text-base">
-                Cathy will review your order and get back to you soon.
-              </DialogDescription>
+              <DialogTitle className="text-xl mb-2">Order Request Sent!</DialogTitle>
             </DialogHeader>
-            <div className="mt-6 p-4 bg-secondary rounded-lg text-left">
-              <p className="font-semibold text-foreground mb-2">Next Step: Payment via Venmo</p>
+            <p className="text-muted-foreground text-sm mt-2 mb-6">
+              Cathy will reach out to confirm your order and arrange pickup details.
+            </p>
+            <div className="bg-secondary rounded-xl p-4 text-left mb-6">
+              <p className="text-sm font-semibold text-foreground mb-1">Complete your order with payment</p>
               <p className="text-sm text-muted-foreground mb-3">
-                Once Cathy confirms your order, send payment to:
+                Once confirmed, send payment via Venmo:
               </p>
-              <p className="text-lg font-bold text-primary">@yellowlady29</p>
+              <p className="text-xl font-bold text-primary">@yellowlady29</p>
               <p className="text-xs text-muted-foreground mt-2">
-                Include your name and order details in the payment note
+                Include your name and dessert in the payment note
               </p>
             </div>
-            <Button 
-              className="mt-6 w-full" 
-              variant="outline"
-              onClick={() => handleOpenChange(false)}
-            >
-              Close
+            <Button className="w-full" variant="outline" onClick={() => handleOpenChange(false)}>
+              Done
             </Button>
           </div>
         ) : (
           <>
             <DialogHeader>
-              <DialogTitle>Order {dessertName}</DialogTitle>
-              <DialogDescription>
-                Fill out the form below and Cathy will get back to you to confirm your order.
-              </DialogDescription>
+              <DialogTitle className="text-lg">Place an Order</DialogTitle>
             </DialogHeader>
-            <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Your Name *</Label>
-                <Input 
-                  id="name" 
-                  name="name" 
-                  placeholder="Full name" 
-                  required 
-                />
+
+            <div className="flex items-center gap-3 bg-secondary rounded-xl px-4 py-3 mt-1">
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold text-sm truncate">{dessertName}</p>
+                <p className="text-xs text-muted-foreground">{dessertPrice} &mdash; {priceNote}</p>
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4 mt-2">
+              <div className="space-y-1.5">
+                <Label htmlFor="name">Full Name <span className="text-primary">*</span></Label>
+                <Input id="name" name="name" placeholder="Your full name" required />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone *</Label>
-                  <Input 
-                    id="phone" 
-                    name="phone" 
-                    type="tel" 
-                    placeholder="(555) 123-4567" 
-                    required 
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input 
-                    id="email" 
-                    name="email" 
-                    type="email" 
-                    placeholder="you@email.com" 
-                  />
-                </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="phone">Phone Number <span className="text-primary">*</span></Label>
+                <Input id="phone" name="phone" type="tel" placeholder="(555) 123-4567" required />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="quantity">Quantity *</Label>
-                  <Input 
-                    id="quantity" 
-                    name="quantity" 
-                    placeholder={priceNote?.includes("dozen") ? "e.g., 1 dozen" : "e.g., 1"}
-                    required 
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <Label htmlFor="quantity">Quantity <span className="text-primary">*</span></Label>
+                  <Input
+                    id="quantity"
+                    name="quantity"
+                    placeholder={priceNote?.includes("dozen") ? "e.g. 2 dozen" : "e.g. 3"}
+                    required
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="pickupDate">Pickup Date *</Label>
-                  <Input 
-                    id="pickupDate" 
-                    name="pickupDate" 
-                    type="date" 
-                    required 
+                <div className="space-y-1.5">
+                  <Label htmlFor="pickupDate">Pickup Date <span className="text-primary">*</span></Label>
+                  <Input
+                    id="pickupDate"
+                    name="pickupDate"
+                    type="date"
+                    required
                     min={new Date().toISOString().split("T")[0]}
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <Label htmlFor="specialRequests">Special Requests</Label>
-                <Textarea 
-                  id="specialRequests" 
-                  name="specialRequests" 
-                  placeholder="Custom toppers, dietary notes, event theme, etc."
+                <Textarea
+                  id="specialRequests"
+                  name="specialRequests"
+                  placeholder="Custom toppers, event theme, dietary notes..."
                   rows={3}
+                  className="resize-none"
                 />
               </div>
 
-              <div className="bg-secondary/50 rounded-lg p-3 text-sm">
-                <p className="font-medium">{dessertName}</p>
-                <p className="text-muted-foreground">{dessertPrice} {priceNote}</p>
-              </div>
-
-              {error && (
-                <p className="text-sm text-red-500">{error}</p>
-              )}
-
-              <Button type="submit" className="w-full" disabled={isSubmitting}>
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Submitting...
-                  </>
-                ) : (
-                  "Submit Order Request"
-                )}
+              <Button type="submit" className="w-full mt-2" size="lg">
+                Place Order Request
               </Button>
+              <p className="text-center text-xs text-muted-foreground pb-1">
+                Cathy will contact you to confirm before any payment is needed.
+              </p>
             </form>
           </>
         )}
