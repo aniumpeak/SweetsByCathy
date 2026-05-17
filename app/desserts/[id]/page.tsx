@@ -2,10 +2,10 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, AlertTriangle } from "lucide-react"
 import { getDessertById, getDesserts } from "@/lib/desserts"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import ImageGallery from "@/components/image-gallery"
+import { OrderForm } from "@/components/order-form"
 
 export async function generateStaticParams() {
   return getDesserts().map((dessert) => ({ id: dessert.id }))
@@ -150,12 +150,12 @@ export default async function DessertPage({ params }: { params: Promise<{ id: st
               </CardContent>
             </Card>
 
-            {/* Contact Button */}
-            <Button asChild size="lg" className="w-full">
-              <Link href="/#contact">
-                Contact Cathy to Order
-              </Link>
-            </Button>
+            {/* Order Button */}
+            <OrderForm 
+              dessertName={dessert.name} 
+              dessertPrice={dessert.price}
+              priceNote={dessert.priceNote}
+            />
           </div>
         </div>
       </div>
