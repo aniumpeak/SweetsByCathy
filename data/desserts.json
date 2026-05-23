@@ -180,5 +180,19 @@
     "allergens": ["Dairy"],
     "ingredients": ["Fresh peaches", "Cream cheese", "Maria cookies", "Heavy cream", "Sweetened condensed milk", "Chantilly cream", "Maraschino cherry", "Vanilla extract"],
     "servingSize": "12 carlotas"
+  },
+  {
+    "id": "gelatina-mosaico-de-uva-con-crema",
+    "name": "Gelatina Mosaico de Uva con Crema",
+    "description": "Individual mosaic gelatina with rich grape cubes suspended in a sweet, creamy milk base, finished with chantilly cream and a fresh blackberry.",
+    "longDescription": "A beautiful mosaic-style gelatina featuring jewel-like grape gelatin cubes suspended in a smooth, sweet, creamy milk base. Available in molded individual portions or layered clear cups to show off the contrast. Each one is finished with a swirl of chantilly cream and topped with a fresh blackberry. The combination of bold grape flavor and rich, creamy gelatin creates a soft, indulgent bite that feels both classic and elegant. Perfect for parties, showers, baptisms, birthdays, and any celebration that calls for a beautiful dessert table.",
+    "image": "/images/gelatina-mosaico-de-uva-con-crema.jpg",
+    "images": ["/images/gelatina-mosaico-de-uva-con-crema-2.jpg"],
+    "category": "Gelatinas",
+    "price": "$35.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy"],
+    "ingredients": ["Grape gelatin", "Sweetened condensed milk", "Evaporated milk", "Heavy cream", "Chantilly cream", "Fresh blackberries"],
+    "servingSize": "12 gelatinas"
   }
 ]
