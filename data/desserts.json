@@ -152,5 +152,19 @@
     "allergens": ["Dairy", "Eggs"],
     "ingredients": ["Strawberry cake base", "Eggs", "Sweetened condensed milk", "Evaporated milk", "Vanilla extract", "Caramel", "Chantilly cream", "Fresh strawberries", "Fresh blueberries", "Fresh blackberries"],
     "servingSize": "12 individual desserts"
+  },
+  {
+    "id": "gelatina-mosaico-patriotic",
+    "name": "Gelatina Mosaico Patriotic Edition",
+    "description": "Individual red, white, and blue mosaic gelatina with creamy tres leches, finished with chantilly cream and themed toppers.",
+    "longDescription": "A festive seasonal version of our mosaic gelatina featuring red and blue gelatin cubes suspended in a rich, creamy tres leches base. Available in individual molded portions or layered clear cups to show off the colors. Each one is finished with a swirl of chantilly cream, patriotic sugar sprinkles, and themed toppers. Perfect for 4th of July cookouts, Memorial Day, Labor Day, military homecomings, and any patriotic celebration that calls for a colorful, festive dessert table.",
+    "image": "/images/gelatina-mosaico-patriotic.jpg",
+    "images": ["/images/gelatina-mosaico-patriotic-2.jpg", "/images/gelatina-mosaico-patriotic-3.jpg"],
+    "category": "Gelatinas",
+    "price": "$35.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy"],
+    "ingredients": ["Red gelatin", "Blue gelatin", "Sweetened condensed milk", "Evaporated milk", "Heavy cream", "Chantilly cream", "Patriotic sugar sprinkles", "Themed toppers"],
+    "servingSize": "12 gelatinas"
   }
 ]
