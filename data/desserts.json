@@ -166,5 +166,19 @@
     "allergens": ["Dairy"],
     "ingredients": ["Red gelatin", "Blue gelatin", "Sweetened condensed milk", "Evaporated milk", "Heavy cream", "Chantilly cream", "Patriotic sugar sprinkles", "Themed toppers"],
     "servingSize": "12 gelatinas"
+  },
+  {
+    "id": "carlota-de-durazno-con-queso-crema",
+    "name": "Carlota de Durazno con Queso Crema",
+    "description": "Individual no-bake peach and cream cheese carlota with layers of cookie, finished with chantilly cream, a peach slice, and a cherry.",
+    "longDescription": "A creamy no-bake carlota made with sweet peaches and cream cheese, layered with soft cookies for a smooth, chilled treat in every cup. Each one is finished with a swirl of chantilly cream and topped with a glazed peach slice and a maraschino cherry. Light, refreshing, and elegant. Perfect for parties, showers, baptisms, and any celebration that calls for a beautiful dessert table.",
+    "image": "/images/carlota-de-durazno-con-queso-crema.jpg",
+    "images": [],
+    "category": "Carlotas",
+    "price": "$35.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy"],
+    "ingredients": ["Fresh peaches", "Cream cheese", "Maria cookies", "Heavy cream", "Sweetened condensed milk", "Chantilly cream", "Maraschino cherry", "Vanilla extract"],
+    "servingSize": "12 carlotas"
   }
 ]
