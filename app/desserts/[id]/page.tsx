@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import ImageGallery from "@/components/image-gallery"
 import { OrderForm } from "@/components/order-form"
+import { ReviewsSection } from "@/components/reviews-section"
 
 export async function generateStaticParams() {
   return getDesserts().map((dessert) => ({ id: dessert.id }))
@@ -158,6 +159,9 @@ export default async function DessertPage({ params }: { params: Promise<{ id: st
             />
           </div>
         </div>
+
+        {/* Reviews */}
+        <ReviewsSection dessertId={dessert.id} />
       </div>
     </main>
   )
