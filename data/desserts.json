@@ -194,5 +194,47 @@
     "allergens": ["Dairy"],
     "ingredients": ["Grape gelatin", "Sweetened condensed milk", "Evaporated milk", "Heavy cream", "Chantilly cream", "Fresh blackberries"],
     "servingSize": "12 gelatinas"
+  },
+  {
+    "id": "gelatina-de-uva-con-crema",
+    "name": "Gelatina de Uva con Crema",
+    "description": "Individual two-layer molded gelatina with a glossy grape top and a sweet, creamy milk base, finished with chantilly cream and a fresh blackberry.",
+    "longDescription": "A beautiful two-layer gelatina featuring a deep, glossy grape layer molded over a smooth, sweet, creamy milk base. Each one is shaped in an elegant flower-style mold, then finished with a swirl of chantilly cream and topped with a fresh blackberry. Can also be made with the cream layer on top for a lighter look. The bold grape flavor and rich creamy base create a soft, refreshing bite that feels classic and elegant. Perfect for parties, showers, baptisms, birthdays, and any celebration that calls for a beautiful dessert table.",
+    "image": "/images/gelatina-de-uva-con-crema.jpg",
+    "images": [],
+    "category": "Gelatinas",
+    "price": "$35.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy"],
+    "ingredients": ["Grape gelatin", "Sweetened condensed milk", "Evaporated milk", "Heavy cream", "Chantilly cream", "Fresh blackberries"],
+    "servingSize": "12 gelatinas"
+  },
+  {
+    "id": "flan-de-vainilla-corazon",
+    "name": "Heart Flan Mini with Vanilla Cake",
+    "description": "Heart-shaped individual vanilla cake topped with silky flan and caramel, finished with chantilly cream, a cherry, and a caramel heart.",
+    "longDescription": "A personal-sized heart-shaped dessert featuring a soft, moist vanilla cake base topped with a silky, slow-baked flan and a glossy caramel finish. Each one is decorated with a swirl of chantilly cream, a maraschino cherry, and a handmade caramel heart. Romantic, elegant, and perfect for Valentine's Day, anniversaries, bridal showers, weddings, and any celebration that deserves a little extra love. Custom toppers available on request, just let us know your theme when ordering.",
+    "image": "/images/flan-de-vainilla-corazon.jpg",
+    "images": [],
+    "category": "Flanes",
+    "price": "$35.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy", "Eggs", "Wheat/Gluten"],
+    "ingredients": ["Vanilla cake base", "Eggs", "Sweetened condensed milk", "Evaporated milk", "Vanilla extract", "Caramel", "Chantilly cream", "Maraschino cherry", "Caramel heart"],
+    "servingSize": "12 mini flans"
+  },
+  {
+    "id": "flan-de-vainilla-pipeta",
+    "name": "Flan Mini with Vanilla Cake & Caramel Pipette",
+    "description": "Individual vanilla cake topped with silky flan, finished with chantilly cream, a cherry, and a caramel-filled pipette for extra drizzle.",
+    "longDescription": "A personal-sized two-layer dessert featuring a soft vanilla cake base topped with a silky, slow-baked flan and a glossy caramel finish. Each one is decorated with a swirl of chantilly cream and a maraschino cherry, plus a caramel-filled pipette so you can add an extra drizzle of caramel right before eating. Fun, interactive, and delicious. Perfect for birthdays, parties, showers, and dessert tables. Custom toppers available on request, just let us know your theme when ordering.",
+    "image": "/images/flan-de-vainilla-pipeta.jpg",
+    "images": [],
+    "category": "Flanes",
+    "price": "$35.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy", "Eggs", "Wheat/Gluten"],
+    "ingredients": ["Vanilla cake base", "Eggs", "Sweetened condensed milk", "Evaporated milk", "Vanilla extract", "Caramel", "Chantilly cream", "Maraschino cherry", "Caramel pipette"],
+    "servingSize": "12 mini flans"
   }
 ]
