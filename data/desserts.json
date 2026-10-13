@@ -236,5 +236,33 @@
     "allergens": ["Dairy", "Eggs", "Wheat/Gluten"],
     "ingredients": ["Vanilla cake base", "Eggs", "Sweetened condensed milk", "Evaporated milk", "Vanilla extract", "Caramel", "Chantilly cream", "Maraschino cherry", "Caramel pipette"],
     "servingSize": "12 mini flans"
+  },
+  {
+    "id": "choco-flan-grande-fresas",
+    "name": "Choco Flan Cake with Strawberries & Dulce de Leche",
+    "description": "Full-size chocolate cake topped with silky flan, drizzled with dulce de leche and chocolate, crowned with fresh strawberries and gold flakes.",
+    "longDescription": "Our signature full-size choco flan: a moist chocolate cake base topped with a creamy, slow-baked flan. Each cake is finished with drizzles of dulce de leche and chocolate, a center of glazed fresh strawberries, and edible gold flakes for an elegant touch. A showstopper for birthdays, anniversaries, holidays, and family gatherings. Custom decorations available on request, just let us know your theme when ordering.",
+    "image": "/images/choco-flan-grande-fresas.jpg",
+    "images": [],
+    "category": "Flanes",
+    "price": "$45.00",
+    "priceNote": "10\" cake",
+    "allergens": ["Dairy", "Eggs", "Wheat/Gluten"],
+    "ingredients": ["Chocolate cake", "Eggs", "Sweetened condensed milk", "Evaporated milk", "Vanilla extract", "Caramel", "Dulce de leche", "Chocolate drizzle", "Fresh strawberries", "Edible gold flakes"],
+    "servingSize": "10-12 people"
+  },
+  {
+    "id": "gelatina-tricolor-mexicana",
+    "name": "Gelatina Tricolor Mexicana",
+    "description": "Individual three-layer gelatinas in green, white, and red, topped with whipped cream and a Mexican flag pick.",
+    "longDescription": "Celebrate in style with our tricolor gelatinas, inspired by the colors of the Mexican flag. Each individual gelatina features a green layer, a creamy white layer, and a bright red layer, finished with a swirl of whipped cream and a Mexican flag topper. Perfect for Fiestas Patrias, Independence Day (16 de Septiembre), Cinco de Mayo, and any celebration of Mexican pride. Custom toppers available on request.",
+    "image": "/images/gelatina-tricolor-mexicana.jpg",
+    "images": [],
+    "category": "Gelatinas",
+    "price": "$35.00",
+    "priceNote": "per dozen",
+    "allergens": ["Dairy"],
+    "ingredients": ["Lime gelatin", "Strawberry gelatin", "Sweetened condensed milk", "Evaporated milk", "Unflavored gelatin", "Whipped cream"],
+    "servingSize": "12 gelatinas"
   }
 ]
